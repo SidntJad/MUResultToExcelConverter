@@ -136,12 +136,12 @@ def export_students_to_excel(all_students, output_path):
     print(f"✅ Excel file saved to: {output_path}")
 
 # Example usage
-with open(r"C:\Users\HP\Downloads\output.txt", encoding="utf-8") as f:
+with open(r"MUResultToExcelConverter/output.txt", encoding="utf-8") as f:
     pdf_text = f.read()
 
 students = parse_all_students(pdf_text)
 pprint.pprint(students, width=140)
-export_students_to_excel(students, r"C:\Users\HP\Downloads\students_data.xlsx")
+export_students_to_excel(students, r"/home/adl/Desktop/csv/MUResultToExcelConverter/temp_data.xlsx")
 
 # Subject dictionary (code → name)
 subject_dict = {}
