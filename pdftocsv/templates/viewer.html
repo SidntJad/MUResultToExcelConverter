@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>PDF Text Viewer</title>
+    <style>
+        span.word {
+            padding: 2px;
+            margin: 1px;
+            cursor: pointer;
+        }
+
+        span.word:hover {
+            background-color: yellow;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Click Words Below</h2>
+    <div id="text">
+        {% for word in words %}
+        <span class="word" onclick="sendClick('{{ word }}')">{{ word }}</span>
+        {% endfor %}
+    </div>
+
+    <script>
+        function sendClick(word) {
+            fetch('/click-word', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ word: word })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        console.log(`Clicked: ${data.word} (${data.count} times)`);
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>
